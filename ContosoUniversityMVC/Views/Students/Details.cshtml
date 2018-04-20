@@ -1,0 +1,67 @@
+﻿@model ContosoUniversityMVC.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.LastName)*@
+            @Html.LabelFor(model => model.LastName, "Last Name:")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.FirstMidName, "First Name:")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstMidName)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.EnrollmentDate, "Enrollment Date:")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EnrollmentDate)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Enrollments, "Enrollments:")
+        </dt>
+        <dd>
+            <table class="table">
+                <tr height=20px></tr>
+                <tr>
+                    <th>Course Title</th>
+                    <th>Grade</th>
+                </tr>
+                @foreach (var item in Model.Enrollments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Course.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grade)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+    <form>
+        <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-default">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
+
+@*<form>
+    <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-default">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</form>*@
